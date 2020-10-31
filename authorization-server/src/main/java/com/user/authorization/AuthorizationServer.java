@@ -9,6 +9,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class AuthorizationServer {
 
 	public static void main(String[] args) {
+		
+		System.setProperty("spring.config.name", "user-authorization-server");
 		SpringApplication.run(AuthorizationServer.class, args);
 	}
 
