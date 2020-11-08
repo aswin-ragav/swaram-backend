@@ -34,7 +34,7 @@ public class ProductController {
 		
 		ProductPrice price = webClientBuilder.build()
 												.get()
-												.uri("http://localhost:8002/" + productId)
+												.uri("http://localhost:8002/price/" + productId)
 												.retrieve()
 												.bodyToMono(ProductPrice.class)
 												.block();
