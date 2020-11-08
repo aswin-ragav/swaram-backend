@@ -1,27 +1,40 @@
 package com.product.model;
 
-import java.io.Serializable;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Product implements Serializable {
+@Table(name = "product", uniqueConstraints = @UniqueConstraint(columnNames = { "productName" }))
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String productName;
-	private String category;
-	private float originalPricePer1000grams;
-	private float retailPricePer1000grams;
 
+	@Column(unique = true)
+	private String productName;
 	private String creationTime;
 
+	@JsonIgnore
+	@ManyToOne /* (fetch = FetchType.LAZY, optional = false) */
+	@JoinColumn(name = "category_id", nullable = false)
+	private Category category;
+
+//	@OneToOne
+//	private ProductPrice price;
+
 	public Product() {
-		super();
 	}
 
 	public String getProductName() {
@@ -30,30 +43,6 @@ public class Product implements Serializable {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public float getOriginalPricePer1000grams() {
-		return originalPricePer1000grams;
-	}
-
-	public void setOriginalPricePer1000grams(float originalPricePer1000grams) {
-		this.originalPricePer1000grams = originalPricePer1000grams;
-	}
-
-	public float getRetailPricePer1000grams() {
-		return retailPricePer1000grams;
-	}
-
-	public void setRetailPricePer1000grams(float retailPricePer1000grams) {
-		this.retailPricePer1000grams = retailPricePer1000grams;
 	}
 
 	public String getCreationTime() {
@@ -67,4 +56,25 @@ public class Product implements Serializable {
 	public long getId() {
 		return id;
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+//	public ProductPrice getPrice() {
+//		return price;
+//	}
+//
+//	public void setPrice(ProductPrice price) {
+//		this.price = price;
+//	}
+
 }
