@@ -1,18 +1,25 @@
 package com.user.authorization.endpoints;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.user.authorization.entity.User;
+import com.user.authorization.service.AuthororizationService;
 
 @RestController
 @RequestMapping("/authorization")
 public class AuthorizationController {
 
-	@PostMapping("/addNewUser")
-	public void addUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String middleName,
-			@RequestParam String eMail, @RequestParam String password) {
+	@Autowired
+	public AuthororizationService service;
 
+	@PostMapping("/addUser")
+	public User addUser(@RequestBody User addUser) {
+		return service.addNewUser(addUser);
 	}
 
 	@PostMapping("/login")
