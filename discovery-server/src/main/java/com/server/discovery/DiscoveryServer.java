@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 public class DiscoveryServer {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.config.name", "discovery-server");
 		SpringApplication.run(DiscoveryServer.class, args);
 	}
 
