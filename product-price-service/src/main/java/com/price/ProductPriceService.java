@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class ProductPriceService {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.config.name", "product-price-service");
 		SpringApplication.run(ProductPriceService.class, args);
 	}
 
