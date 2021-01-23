@@ -1,18 +1,19 @@
 package com.user.authorization.entity;
 
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "address")
-public class Address {
+@Table(name = "ADDRESS")
+public class Address extends EntityMessage implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,75 +38,62 @@ public class Address {
 	@Column(name = "COUNTRY")
 	private String nationality;
 
-//	@JoinColumn(name = "USER_ID")
-//	@ManyToOne
-//	private User user;
-
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	@Column(name = "USER_ID")
+	private long userId;
 
 	public Address() {
+
 	}
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+	public long getId() { return id; }
 
-	public String getCity() {
-		return city;
-	}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+	public void setId(long id) { this.id = id; }
 
-	public String getState() {
-		return state;
-	}
 
-	public void setState(String state) {
-		this.state = state;
-	}
+	public String getCity() { return city; }
 
-	public String getAddress1() {
-		return address1;
-	}
 
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
+	public void setCity(String city) { this.city = city; }
 
-	public String getAddress2() {
-		return address2;
-	}
 
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
+	public String getState() { return state; }
 
-	public String getZipcode() {
-		return zipcode;
-	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
+	public void setState(String state) { this.state = state; }
 
-	public String getNationality() {
-		return nationality;
-	}
+
+	public String getAddress1() { return address1; }
+
+
+	public void setAddress1(String address1) { this.address1 = address1; }
+
+
+	public String getAddress2() { return address2; }
+
+
+	public void setAddress2(String address2) { this.address2 = address2; }
+
+
+	public String getZipcode() { return zipcode; }
+
+
+	public void setZipcode(String zipcode) { this.zipcode = zipcode; }
+
+
+	public String getNationality() { return nationality; }
+
 
 	public void setNationality(String nationality) {
+
 		this.nationality = nationality;
 	}
+
+
+	public long getUserId() { return userId; }
+
+
+	public void setUserId(long userId) { this.userId = userId; }
 
 }

@@ -24,10 +24,11 @@ public class Product {
 
 	@Column(unique = true)
 	private String productName;
+	
 	private String creationTime;
 
 	@JsonIgnore
-	@ManyToOne /* (fetch = FetchType.LAZY, optional = false) */
+	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category category;
 
